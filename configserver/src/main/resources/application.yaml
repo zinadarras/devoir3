@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: "configserver"
+  profiles:
+    active: git
+      #native
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/zinadarras/config-repo.git
+          default-label: main
+          clone-on-start: true
+        #native:
+          #search-locations: file:///C:/Users/zinad/IdeaProjects/zaina-spring-cloud/config-repo
+          #search-locations: "classpath:/config"
+
+server:
+  port: 9999
