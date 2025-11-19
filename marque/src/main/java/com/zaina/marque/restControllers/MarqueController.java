@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class MarqueController {
     private MarqueService marqueService;
 
-    @Value("${build.version}")
-    private String buildVersion;
-
-    @Autowired
-    Configuration configuration;
+//    @Value("${build.version}")
+//    private String buildVersion;
+//
+//    @Autowired
+//    Configuration configuration;
 
     public MarqueController(MarqueService marqueService) {
         this.marqueService = marqueService;
@@ -37,17 +37,17 @@ public class MarqueController {
     }
 
 
-    @GetMapping("/version")
-    public ResponseEntity<String> version()
-    {
-        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
-    }
-
-    @GetMapping("/author")
-    public ResponseEntity<String> retrieveAuthorInfo() {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(configuration.getName()+" "+configuration.getEmail() );
-    }
+//    @GetMapping("/version")
+//    public ResponseEntity<String> version()
+//    {
+//        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+//    }
+//
+//    @GetMapping("/author")
+//    public ResponseEntity<String> retrieveAuthorInfo() {
+//        return ResponseEntity.status(HttpStatus.OK)
+//                .body(configuration.getName()+" "+configuration.getEmail() );
+//    }
 
 }
 

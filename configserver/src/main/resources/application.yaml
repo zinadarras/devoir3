@@ -1,4 +1,9 @@
 spring:
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
   application:
     name: "configserver"
   profiles:
@@ -17,3 +22,8 @@ spring:
 
 server:
   port: 9999
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

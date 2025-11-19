@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class APIResponseDto {
-    private MarqueDto marqueDto;
     private VoitureDto voitureDto;
+    private MarqueDto marqueDto;
 }

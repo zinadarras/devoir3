@@ -20,17 +20,23 @@ public class VoitureServiceImpl implements VoitureService{
 
     @Override
     public APIResponseDto getVoitureById(Long id) {
+        String marName;
         Voiture voit = voitureRepository.findById(id).get();
 
         MarqueDto marqueDto = apiClient.getMarqueByCode(voit.getCodeMarque());
 
+
+        if(marqueDto==null)
+            marName="NOT AVAILABLE";
+        else
+            marName= marqueDto.getName();
 
         VoitureDto voitureDto = new VoitureDto(
                 voit.getId(),
                 voit.getCouleur(),
                 voit.getImmCode(),
                 voit.getCodeMarque(),
-                marqueDto.getName()
+                marName
         );
 
         APIResponseDto apiResponseDto = new APIResponseDto();

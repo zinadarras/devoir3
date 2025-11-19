@@ -9,23 +9,19 @@ spring:
     discovery:
       enabled: true
     gateway:
-      routes:
-        - id : r1
-          uri : lb://MARQUE
-          predicates:
-            - Path=/api/marques/**
-        - id: r2
-          uri: lb://VOITURE
-          predicates:
-            - Path=/api/voitures/**
+#      routes:
+#        - id : r1
+#          uri : lb://MARQUE
+#          predicates:
+#            - Path=/api/marques/**
+#        - id: r2
+#          uri: lb://VOITURE
+#          predicates:
+#            - Path=/api/voitures/**
       discovery:
         locator:
           enabled: false
           lower-case-service-id: true
-  eureka:
-    client:
-      service-url:
-        defaultZone: 'http://localhost:8761/eureka/'
 management:
   endpoints:
     web:
@@ -35,5 +31,17 @@ management:
     gateway:
       access: unrestricted
 eureka:
-  instance:
-    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka}
+      instance:
+        prefer-ip-address: true
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
